@@ -29,7 +29,7 @@ Run application with iex
 iex -S mix
 ```
 
-Default PORT is 4000 set in file [chat_server.ex](lib/chat_server.ex)
+Default PORT is 4000 set in file [chat.ex](https://github.com/sylviot/chatex/blob/master/lib/chat.ex#L47)
 
 Open browser in [localhost:4000/index.html](http://localhost:4000/index.html)
 
