@@ -42,8 +42,8 @@ defmodule Chat do
 
 
 	defp port do
-		case :os.getenv("PORT") do
-			port_number -> List.to_integer(port_number)
+		case System.get_env("PORT") do
+			port_number when port_number -> String.to_integer(port_number)
 			_ -> 4000
 		end	
 	end
