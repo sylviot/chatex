@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css">
-	<style type="text/css">
+  <title></title>
+
+  <!--== STYLES ==-->
+
+  <link rel="stylesheet" href="./public/assets/vendors/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./public/assets/vendors/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./public/assets/css/chatex.min.css">
+
+  <!--== END STYLES ==-->
+
+  <style type="text/css">
     #chat > .grid {
       height: 100%;
     }
@@ -16,202 +24,101 @@
   </style>
 </head>
 <body>
-	<div id="chat" style="height: 100%">
+<div id="chat" style="height: 100%">
 
-		<div class="ui middle aligned center aligned grid" v-if="connected == false" style="background-color: #DADADA">
-			<div class="enter-column column">
-		    <h2 class="ui teal image header">
-		      <div class="content" style="color:#482359">Chatex</div>
-		    </h2>
+  <div class="ui middle aligned center aligned grid" v-if="connected == false" style="background-color: #DADADA">
+    <div class="enter-column column">
+      <h2 class="ui teal image header">
+        <div class="content" style="color:#482359">Chatex</div>
+      </h2>
 
-		    <div class="ui large form">
-		      <div class="ui stacked segment">
-		        <div class="field">
-		          <div class="ui left icon input">
-		            <i class="user icon"></i>
-		            <input type="text" name="username" placeholder="Your name" v-model="username" v-on:keyup.enter="connect" focus>
-		          </div>
-		        </div>
+      <div class="ui large form">
+        <div class="ui stacked segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" name="username" placeholder="Your name" v-model="username" v-on:keyup.enter="connect" focus>
+            </div>
+          </div>
 
-		        <div class="ui fluid large teal submit button" v-on:click="connect">Enter on chat</div>
-		      </div>
+          <div class="ui fluid large teal submit button" v-on:click="connect">Enter on chat</div>
+        </div>
 
-		      <div class="ui error message"></div>
+        <div class="ui error message"></div>
 
-		    </div>
+      </div>
 
-		  </div>
-		</div>
+    </div>
+  </div>
 
-		<div class="ui grid container" v-if="connected">
+  <div class="ui grid container" v-if="connected">
 
-			<div class="ten wide column">
-				<h1 class="ui dividing header">Chat</h1>
+    <div class="ten wide column">
+      <h1 class="ui dividing header">Chat</h1>
 
-				<div class="ui comments" v-for="message in messages">
-					
-					<div class="comment" v-if="message.type == 'member'">
-			      <div class="content">
-			      	<h4 class="ui horizontal divider header">
-			      		<i class="icon user add" v-if="message.icon == 'join'"></i>
-			      		<i class="icon user remove" v-if="message.icon == 'leave'"></i>
-			      		{{message.username}} {{message.content}}
-		      		</h4>
-			      </div>
-			    </div>
+      <div class="ui comments" v-for="message in messages">
 
-					<div class="comment" v-if="message.type == 'message'">
-						<a class="avatar">
-							<img src="http://semantic-ui.com/images/avatar/small/joe.jpg">
-						</a>
-						<div class="content">
-							<a class="author">{{message.username}}</a>
-							<div class="metadata">
-								<span class="date">{{message.date}}</span>
-							</div>
-							<div class="text">{{message.content}}</div>
-						</div>
-					</div>
-				</div>
+        <div class="comment" v-if="message.type == 'member'">
+          <div class="content">
+            <h4 class="ui horizontal divider header">
+              <i class="icon user add" v-if="message.icon == 'join'"></i>
+              <i class="icon user remove" v-if="message.icon == 'leave'"></i>
+              {{message.username}} {{message.content}}
+            </h4>
+          </div>
+        </div>
 
-				<div class="ui form">
-					<div class="field">
-						<input type="text" name="message" v-model="message" v-on:keyup.enter="sendMessage" autocomplete="off">
-					</div>
-					<button type="button" name="send" v-on:click="sendMessage">Send</button>
-				</div>
-			</div>
+        <div class="comment" v-if="message.type == 'message'">
+          <a class="avatar">
+            <img src="http://semantic-ui.com/images/avatar/small/joe.jpg">
+          </a>
+          <div class="content">
+            <a class="author">{{message.username}}</a>
+            <div class="metadata">
+              <span class="date">{{message.date}}</span>
+            </div>
+            <div class="text">{{message.content}}</div>
+          </div>
+        </div>
+      </div>
 
-			<div class="six wide column" v-if="connected">
-				<div class="ui feed">
-					<h1 class="ui dividing header">Online {{members.length}}</h1>
-					<div class="event" v-for="member in members">
-						<div class="label">
-							<img src="http://semantic-ui.com/images/avatar/small/elliot.jpg">
-						</div>
-						<div class="content">
-							{{member}}
-						</div>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-		
-	</div>
+      <div class="ui form">
+        <div class="field">
+          <input type="text" name="message" v-model="message" v-on:keyup.enter="sendMessage" autocomplete="off">
+        </div>
+        <button type="button" name="send" v-on:click="sendMessage">Send</button>
+      </div>
+    </div>
 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.js"></script>
-	<script>
-		(function(){
-			var Utils = {
-				solveURL: function() {
-					protocol = 'ws://';
+    <div class="six wide column" v-if="connected">
+      <div class="ui feed">
+        <h1 class="ui dividing header">Online {{members.length}}</h1>
+        <div class="event" v-for="member in members">
+          <div class="label">
+            <img src="http://semantic-ui.com/images/avatar/small/elliot.jpg">
+          </div>
+          <div class="content">
+            {{member}}
+          </div>
+        </div>
+      </div>
+    </div>
 
-					if(window.location.protocol == 'https:') {
-						protocol = 'wss://';
-					}
+  </div>
 
-					return protocol + window.location.host + '/ws';
-				},
-				getDate: function() {
-					date = new Date();
-					hours = date.getHours();
-					minutes = date.getMinutes();
+</div>
 
-					if(hours < 10) {
-						hours = '0' + hours;
-					}
+<!--== 3rd-party SCRIPTS ==-->
 
-					if(minutes < 10) {
-						minutes = '0' + minutes;
-					}
+<script src="./public/assets/vendors/jquery/jquery.min.js"></script>
+<script src="./public/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="./public/assets/vendors/vue/js/vue.min.js"></script>
 
-					return hours + ':' + minutes;
-				}
-			};
+<!--== END 3rd-party SCRIPTS ==-->
 
-			var chat = new Vue({
-				el: '#chat',
-				data: {
-					username: '',
-					message: '',
-					ws: null,
-					connected: false,
-					members: [],
-					messages: [],
-				},
-				methods: {
-					addMessage: function(username, date, content) {
-						message = {type: 'message', username: username, date: date, content: content};
-						this.messages.push(message);
-					},
-					addMessageMember: function(username, content, icon) {
-						messageMember = {type: 'member', icon: icon, username: username, content: content};
-						this.messages.push(messageMember);
-					},
-					updateMembers: function(members) {
-						this.members = members;
-					},
-					sendMessage: function() {
-						if( ! this.ws ) {
-							alert('Not connected!');
-						}
+<!--== PROJECT SCRIPTS ==-->
+<script src="./public/assets/js/chatex.min.js"></script>
+<!--== END PROJECT SCRIPTS ==-->
 
-						if( !this.message.trim() ){
-							return false;
-						}
-
-						this.send('talk', {message: this.message});
-					},
-					connect: function(event) {
-						this.ws = new WebSocket( Utils.solveURL() );
-						this.ws.onopen = this.onOpen;
-						this.ws.onmessage = this.onMessage;
-						this.ws.onclose = this.onClose;
-					},
-					send: function(action, data){
-						this.ws.send(JSON.stringify({
-							action: action,
-							data: data
-						}));
-
-						this.message = '';
-					},
-					onOpen: function() {
-						this.connected = true;
-
-						this.send('join', {room: 'geral', username: this.username});
-					},
-					onMessage: function(e) {
-						var data = JSON.parse(e.data);
-						
-						if( data.action == "message" ) {
-							data.date = Utils.getDate();
-							this.addMessage(data.username, data.date, data.content);
-						}
-						else if( data.action == "join" ) {
-							this.addMessageMember(data.username, data.content, data.action);
-						}
-						else if( data.action == 'leave' ) {
-							this.addMessageMember(data.username, data.content, data.action)
-						}
-						else if( data.action == 'online' ) {
-							this.updateMembers(data.content);
-						}
-					},
-					onClose: function() {
-						this.message = '';
-						this.messages = [];
-						this.members = [];
-						this.ws = null;
-
-						this.connected = false;
-					}
-				}
-			});
-		}());
-	</script>
 </body>
 </html>
