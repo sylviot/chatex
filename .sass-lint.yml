@@ -91,10 +91,10 @@ rules:
     -
       style: long
   # Force hexadecimal values to uppercase
-  hex-notation:
-    - 2
-    -
-      style: uppercase
+  hex-notation: 0
+#    - 2
+#    -
+#      style: uppercase
   # Force identifier name format
   id-name-format:
     - 2
@@ -120,12 +120,12 @@ rules:
       convention: hyphenatedlowercase
       convention-explanation: 'Mixins must contain only lowercase letters and hyphens'
   # Force include mixin before declarations
-  mixins-before-declarations: 2
+  mixins-before-declarations: 0
   # Force nesting depth
   nesting-depth:
     - 2
     -
-      max-depth: 1
+      max-depth: 3
   # Disallow no attribute selectors
   no-attribute-selectors: 2
   # Disallow color keywords (eg: red, blue, etc…)
@@ -382,7 +382,7 @@ rules:
   property-units:
     - 2
     -
-      global: ['em', 'rem', '%', 'px']
+      global: ['em', 'rem', '%', 'px', ]
   # Force correct syntax for pseudo-elements and pseudo-classes (eg: ::before and :hover)
   pseudo-element: 2
   # Force single quotes
