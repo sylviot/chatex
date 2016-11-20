@@ -21,11 +21,13 @@
   "homepage": "https://github.com/LucasBRamos/chatex#readme",
   "devDependencies": {
     "bootstrap": "^3.3.7",
+    "bourbon": "^4.2.7",
     "breakpoint-sass": "^2.7.0",
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "jquery": "^3.1.1",
     "laravel-elixir": "^5.0.0",
+    "laravel-elixir-sass-lint": "^1.0.1",
     "vue": "^2.0.7"
   }
 }
