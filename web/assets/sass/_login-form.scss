@@ -1,5 +1,8 @@
 .main-title {
+  margin: 0;
+
   font-family: $font;
+  font-size: 26px;
   font-weight: 300;
   text-align: center;
 }
@@ -9,8 +12,8 @@
   top: 50%;
   left: 50%;
 
-  width: 250px;
-  padding: 10px;
+  width: 280px;
+  padding: 20px 10px;
 
   background-color: $white;
   border-radius: 5px;
@@ -23,7 +26,38 @@
 }
 
 .login-inputs {
+  margin-top: 10px;
+
   input {
     height: 40px;
+
+    font-family: $font;
+    font-size: 18px;
+    font-weight: 300;
+
+    background-color: $light-gray;
+
+    &:focus {
+      border-color: $light-gray;
+
+      box-shadow: none;
+    }
+
+    @include placeholder {
+      color: $placeholders-color;
+    }
   }
+}
+
+.btn-login {
+  display: block;
+  width: 100%;
+  padding: 10px;
+
+  font-family: $font;
+  font-weight: 300;
+  color: $white;
+  text-transform: uppercase;
+
+  background-color: $main-color;
 }
