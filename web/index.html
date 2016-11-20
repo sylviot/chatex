@@ -14,12 +14,12 @@
   <link rel="stylesheet" href="./public/assets/css/chatex.min.css">
 
   <!--== END STYLES ==-->
-  </head>
+</head>
 <body>
 <div class="chat" id="chat">
 
-  <div class="login-wrapper">
-    <h1 class="main-title">
+  <div class="login-wrapper" v-if="connected == false">
+    <h1 class="title center">
       Chatex
     </h1>
     <!--== /.main-title ==-->
@@ -27,104 +27,112 @@
     <div class="login-inputs">
 
       <div class="form-group">
-        <input class="form-control" type="text" placeholder="Your name">
+        <input class="form-control" type="text" placeholder="Your name" v-model="username" v-on:keyup.enter="connect" autofocus>
       </div>
 
-      <button class="btn btn-login">Enter on chat</button>
+      <button class="btn btn-login" v-on:click="connect">Enter on chat</button>
     </div>
     <!--== /.login-inputs ==-->
   </div>
   <!--== /.login-wrapper ==-->
 
-  <div class="container">
+  <section class="container chat-container" v-if="connected">
     <div class="row">
-      <div class="col-xs-12">
+      <header class="chat-header">
+        <div class="col-xs-12 col-md-4 height-full divider-right green">
+          <h2 class="title white">
+            <i class="fa fa-users" aria-hidden="true"></i> Online | {{members.length}}
+          </h2>
+          <!--== /.title white ==-->
+        </div>
+        <!--== /.col-xs-12 col-md-4 height-full divider-right green ==-->
 
-      </div>
-      <!--== /.col-xs-12 ==-->
+        <div class="col-xs-12 col-md-8 height-full">
+          <h2 class="title white">
+            <i class="fa fa-comments" aria-hidden="true"></i> Chat
+          </h2>
+          <!--== /.title white ==-->
+        </div>
+        <!--== /.col-xs-12 col-md-8 height-full ==-->
+      </header>
+      <!--== /.chat-header ==-->
     </div>
     <!--== /.row ==-->
-  </div>
+
+    <div class="row">
+      <div class="chat-content-height">
+        <div class="col-xs-12 col-md-4 height-full divider-right gray">
+
+          <div class="row">
+            <ul class="chat-members-list chat-content-height">
+              <li v-for="member in members">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <span>{{member}}</span>
+              </li>
+            </ul>
+          </div>
+          <!--== /.row ==-->
+        </div>
+        <!--== /.col-xs-12 col-md-4 height-full ==-->
+      </div>
+      <!--== /.chat-content ==-->
+    </div>
+    <!--== /.row ==-->
+  </section>
   <!--== /.container ==-->
-
-
-  <!--<div class="ui middle aligned center aligned grid" v-if="connected == false">-->
-    <!--<div class="enter-column column">-->
-      <!--<h2 class="ui teal image header">-->
-        <!--<div class="content">Chatex</div>-->
-      <!--</h2>-->
-
-      <!--<div class="ui large form">-->
-        <!--<div class="ui stacked segment">-->
-          <!--<div class="field">-->
-            <!--<div class="ui left icon input">-->
-              <!--<i class="user icon"></i>-->
-              <!--<input type="text" name="username" placeholder="Your name" v-model="username" v-on:keyup.enter="connect" focus>-->
-            <!--</div>-->
-          <!--</div>-->
-
-          <!--<div class="ui fluid large teal submit button" v-on:click="connect">Enter on chat</div>-->
-        <!--</div>-->
-
-        <!--<div class="ui error message"></div>-->
-
-      <!--</div>-->
-
-    <!--</div>-->
-  <!--</div>-->
 
   <!--<div class="ui grid container" v-if="connected">-->
 
-    <!--<div class="ten wide column">-->
-      <!--<h1 class="ui dividing header">Chat</h1>-->
+  <!--<div class="ten wide column">-->
+  <!--<h1 class="ui dividing header">Chat</h1>-->
 
-      <!--<div class="ui comments" v-for="message in messages">-->
+  <!--<div class="ui comments" v-for="message in messages">-->
 
-        <!--<div class="comment" v-if="message.type == 'member'">-->
-          <!--<div class="content">-->
-            <!--<h4 class="ui horizontal divider header">-->
-              <!--<i class="icon user add" v-if="message.icon == 'join'"></i>-->
-              <!--<i class="icon user remove" v-if="message.icon == 'leave'"></i>-->
-              <!--{{message.username}} {{message.content}}-->
-            <!--</h4>-->
-          <!--</div>-->
-        <!--</div>-->
+  <!--<div class="comment" v-if="message.type == 'member'">-->
+  <!--<div class="content">-->
+  <!--<h4 class="ui horizontal divider header">-->
+  <!--<i class="icon user add" v-if="message.icon == 'join'"></i>-->
+  <!--<i class="icon user remove" v-if="message.icon == 'leave'"></i>-->
+  <!--{{message.username}} {{message.content}}-->
+  <!--</h4>-->
+  <!--</div>-->
+  <!--</div>-->
 
-        <!--<div class="comment" v-if="message.type == 'message'">-->
-          <!--<a class="avatar">-->
-            <!--<img src="http://semantic-ui.com/images/avatar/small/joe.jpg">-->
-          <!--</a>-->
-          <!--<div class="content">-->
-            <!--<a class="author">{{message.username}}</a>-->
-            <!--<div class="metadata">-->
-              <!--<span class="date">{{message.date}}</span>-->
-            <!--</div>-->
-            <!--<div class="text">{{message.content}}</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
+  <!--<div class="comment" v-if="message.type == 'message'">-->
+  <!--<a class="avatar">-->
+  <!--<img src="http://semantic-ui.com/images/avatar/small/joe.jpg">-->
+  <!--</a>-->
+  <!--<div class="content">-->
+  <!--<a class="author">{{message.username}}</a>-->
+  <!--<div class="metadata">-->
+  <!--<span class="date">{{message.date}}</span>-->
+  <!--</div>-->
+  <!--<div class="text">{{message.content}}</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
 
-      <!--<div class="ui form">-->
-        <!--<div class="field">-->
-          <!--<input type="text" name="message" v-model="message" v-on:keyup.enter="sendMessage" autocomplete="off">-->
-        <!--</div>-->
-        <!--<button type="button" name="send" v-on:click="sendMessage">Send</button>-->
-      <!--</div>-->
-    <!--</div>-->
+  <!--<div class="ui form">-->
+  <!--<div class="field">-->
+  <!--<input type="text" name="message" v-model="message" v-on:keyup.enter="sendMessage" autocomplete="off">-->
+  <!--</div>-->
+  <!--<button type="button" name="send" v-on:click="sendMessage">Send</button>-->
+  <!--</div>-->
+  <!--</div>-->
 
-    <!--<div class="six wide column" v-if="connected">-->
-      <!--<div class="ui feed">-->
-        <!--<h1 class="ui dividing header">Online {{members.length}}</h1>-->
-        <!--<div class="event" v-for="member in members">-->
-          <!--<div class="label">-->
-            <!--<img src="http://semantic-ui.com/images/avatar/small/elliot.jpg">-->
-          <!--</div>-->
-          <!--<div class="content">-->
-            <!--{{member}}-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+  <!--<div class="six wide column" v-if="connected">-->
+  <!--<div class="ui feed">-->
+  <!--<h1 class="ui dividing header">Online {{members.length}}</h1>-->
+  <!--<div class="event" v-for="member in members">-->
+  <!--<div class="label">-->
+  <!--<img src="http://semantic-ui.com/images/avatar/small/elliot.jpg">-->
+  <!--</div>-->
+  <!--<div class="content">-->
+  <!--{{member}}-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
 
   <!--</div>-->
 

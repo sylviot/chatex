@@ -34,7 +34,6 @@ elixir(function(mix) {
       notify: false,
       files: [
         './web/index.html',
-        './web/linters/sass-lint.html',
         './web/public/assets/css/**/*.css',
         './web/public/assets/js/**/*.js',
         './web/public/assets/fonts/**/**'

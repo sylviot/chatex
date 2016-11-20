@@ -1,0 +1,49 @@
+.chat-container {
+  width: 800px;
+  @include calc(height, '100vh - 20px');
+  margin-top: 10px;
+
+  background-color: $white;
+
+  box-shadow: 0 0 15px 1px $light-gray;
+}
+
+.chat-header {
+  height: 60px;
+
+  background-color: $main-color;
+
+  h2 {
+    height: 100%;
+
+    line-height: 60px;
+  }
+}
+
+.chat-content-height {
+  @include calc(height, '100vh - 80px');
+}
+
+.chat-members-list {
+  padding: 0 15px;
+  margin: 0;
+
+  overflow: scroll;
+  list-style: none;
+
+  li {
+    padding: 15px 0;
+
+    font-family: $font;
+    font-size: 18px;
+    font-weight: 300;
+
+    & + li {
+      border-top: 1px solid $border-color;
+    }
+
+    i {
+      color: $main-color;
+    }
+  }
+}

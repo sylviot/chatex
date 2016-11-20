@@ -9,6 +9,6 @@ body {
 }
 
 * {
-  font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  @include prefixer(text-rendering, optimizeLegibility, webkit moz spec);
+  @include prefixer(font-smoothing, antialiased, webkit moz spec);
 }

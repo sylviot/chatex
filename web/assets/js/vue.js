@@ -1,7 +1,7 @@
 (function() {
   let Utils = {
     solveURL: function() {
-      protocol = 'ws://';
+      let protocol = 'ws://';
 
       if(window.location.protocol == 'https:') {
         protocol = 'wss://';
@@ -10,9 +10,9 @@
       return protocol + window.location.host + '/ws';
     },
     getDate: function() {
-      date = new Date();
-      hours = date.getHours();
-      minutes = date.getMinutes();
+      let date = new Date();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
 
       if(hours < 10) {
         hours = '0' + hours;
@@ -105,4 +105,29 @@
       }
     }
   });
+
+  chat.connected = true;
+  chat.members = [
+    'Lucas Ramos',
+    'Mateus Ramos',
+    'Sylviot',
+    'Lucas Ramos',
+    'Mateus Ramos',
+    'Sylviot',
+    'Lucas Ramos',
+    'Mateus Ramos',
+    'Sylviot',
+    'Lucas Ramos',
+    'Mateus Ramos',
+    'Sylviot',
+    'Lucas Ramos',
+    'Mateus Ramos',
+    'Sylviot',
+    'Lucas Ramos',
+    'Mateus Ramos',
+    'Sylviot',
+    'Lucas Ramos',
+    'Mateus Ramos',
+    'Sylviot',
+  ];
 }());
