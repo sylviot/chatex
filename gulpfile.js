@@ -1,9 +1,15 @@
 var elixir = require('laravel-elixir');
 
+require('laravel-elixir-sass-lint');
+
 elixir(function(mix) {
   mix
     .sass('./web/assets/sass/chatex.scss', './web/public/assets/css/chatex.min.css')
 
+    // Lint for sass
+    .sasslint(['./web/assets/sass/**/**'])
+
+    // Convert ES6/ES7 to ES5
     .babel('./web/assets/js/**/**.js', './web/public/assets/js/chatex.min.js')
 
     // Jquery
@@ -28,6 +34,7 @@ elixir(function(mix) {
       notify: false,
       files: [
         './web/index.html',
+        './web/linters/sass-lint.html',
         './web/public/assets/css/**/*.css',
         './web/public/assets/js/**/*.js',
         './web/public/assets/fonts/**/**'
