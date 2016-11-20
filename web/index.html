@@ -10,26 +10,15 @@
   <link rel="stylesheet" href="./public/assets/css/chatex.min.css">
 
   <!--== END STYLES ==-->
-
-  <style type="text/css">
-    #chat > .grid {
-      height: 100%;
-    }
-    .image {
-      margin-top: -100px;
-    }
-    .enter-column {
-      max-width: 450px;
-    }
-  </style>
-</head>
+  </head>
 <body>
-<div id="chat" style="height: 100%">
+<div id="chat">
 
-  <div class="ui middle aligned center aligned grid" v-if="connected == false" style="background-color: #DADADA">
+
+  <div class="ui middle aligned center aligned grid" v-if="connected == false">
     <div class="enter-column column">
       <h2 class="ui teal image header">
-        <div class="content" style="color:#482359">Chatex</div>
+        <div class="content">Chatex</div>
       </h2>
 
       <div class="ui large form">

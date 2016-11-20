@@ -20,13 +20,17 @@ elixir(function(mix) {
     // Vue
     .copy('./node_modules/vue/dist/vue.min.js', './web/public/assets/vendors/vue/js')
 
+    // Project Fonts
+    .copy('./web/assets/fonts/**/**', './web/public/assets/fonts')
+
     .browserSync({
       serveStatic: ['web'],
       notify: false,
       files: [
         './web/index.html',
         './web/public/assets/css/**/*.css',
-        './web/public/assets/js/**/*.js'
+        './web/public/assets/js/**/*.js',
+        './web/public/assets/fonts/**/**'
       ]
     });
 });
