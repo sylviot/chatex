@@ -38,6 +38,9 @@
     font-size: 18px;
     font-weight: 300;
 
+    @include display(flex);
+    @include align-items(center);
+
     & + li {
       border-top: 1px solid $border-color;
     }
@@ -45,5 +48,60 @@
     i {
       color: $main-color;
     }
+  }
+}
+
+.user-identify {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+
+  font-weight: 400;
+  line-height: 50px;
+  text-align: center;
+
+  background-color: $border-color;
+  border-radius: 50%;
+}
+
+.chat-messages {
+  position: relative;
+}
+
+.chat-textbox {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  padding-bottom: 15px;
+
+  @include display(flex);
+  @include align-items(center);
+
+  input {
+    height: 40px;
+  }
+}
+
+.chat-send-button {
+  height: 40px;
+  margin-left: 10px;
+
+  font-size: 20px;
+  line-height: 40px;
+  color: $white;
+  text-align: center;
+
+  background-color: $main-color;
+  border-radius: 50%;
+
+  @include flex(0 0 40px);
+  @include align-items(center);
+
+  i {
+    position: relative;
+    left: 1px;
   }
 }

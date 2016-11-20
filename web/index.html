@@ -66,7 +66,7 @@
           <div class="row">
             <ul class="chat-members-list chat-content-height">
               <li v-for="member in members">
-                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <span class="user-identify">{{member.charAt(0)}}</span>
                 <span>{{member}}</span>
               </li>
             </ul>
@@ -74,6 +74,18 @@
           <!--== /.row ==-->
         </div>
         <!--== /.col-xs-12 col-md-4 height-full ==-->
+
+        <div class="col-xs-12 col-md-8 height-full">
+          <div class="chat-messages chat-content-height">
+            <div class="chat-textbox">
+              <input class="form-control" type="text" name="message" v-model="message" v-on:keyup.enter="sendMessage" placeholder="Enter a message" autocomplete="off">
+              <span class="chat-send-button" v-on:click="sendMessage"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+            </div>
+            <!--== /.chat-textbox ==-->
+          </div>
+          <!--== /.chat-messages chat-content-height ==-->
+        </div>
+        <!--== /.col-xs-12 col-md-8 height-full ==-->
       </div>
       <!--== /.chat-content ==-->
     </div>
