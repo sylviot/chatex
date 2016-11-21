@@ -26,10 +26,8 @@
 
 .chat-members-list {
   padding: 0 15px;
-  margin: 0;
 
   overflow: scroll;
-  list-style: none;
 
   li {
     padding: 15px 0;
@@ -69,13 +67,97 @@
   position: relative;
 }
 
+.chat-history-wrapper {
+  background-color: $chat-history-background;
+}
+
+.chat-history {
+  padding: 10px 0;
+
+  overflow: scroll;
+
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include calc(height, '100vh - 150px');
+}
+
+.chat-history-item {
+  position: relative;
+
+  width: 70%;
+  padding: 10px;
+
+  font-family: $font;
+
+  background-color: $chat-history-item-color;
+  border-radius: 5px;
+
+  & + .chat-history-item {
+    margin-top: 15px;
+  }
+
+  &::before {
+    position: absolute;
+    bottom: 3px;
+
+    content: '';
+  }
+
+  &.left {
+    margin-right: auto;
+    margin-left: 15px;
+
+    &::before {
+      left: -10px;
+
+      @include triangle(25px, $chat-history-item-color, left);
+    }
+  }
+
+  &.right {
+    margin-right: 15px;
+    margin-left: auto;
+
+    &::before {
+      right: -10px;
+
+      @include triangle(25px, $chat-history-item-color, right);
+    }
+  }
+}
+
+.chat-history-message-header {
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(space-between);
+}
+
+.chat-history-message-name {
+  strong {
+    font-weight: 400;
+  }
+}
+
+.chat-history-message-date,
+.chat-history-message-content {
+  font-weight: 300;
+}
+
+.chat-history-message-content {
+  color: $text-color;
+}
+
+.chat-history-message-date {
+  font-size: 12px;
+}
+
 .chat-textbox {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
 
-  padding-bottom: 15px;
+  height: 70px;
 
   @include display(flex);
   @include align-items(center);

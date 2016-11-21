@@ -75,8 +75,30 @@
         </div>
         <!--== /.col-xs-12 col-md-4 height-full ==-->
 
-        <div class="col-xs-12 col-md-8 height-full">
+        <div class="col-xs-12 col-md-8 height-full chat-history-wrapper">
           <div class="chat-messages chat-content-height">
+
+            <ul class="chat-history">
+              <li class="chat-history-item left" v-for="message in messages">
+                <div v-if="message.type == 'message'">
+                  <div class="chat-history-message-header">
+                    <div class="chat-history-message-name">
+                      <strong>{{message.username}}</strong>
+                    </div>
+
+                    <div class="chat-history-message-date">
+                      {{message.date}}
+                    </div>
+                  </div>
+
+                  <div class="chat-history-message-content">
+                    {{message.content}}
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+
             <div class="chat-textbox">
               <input class="form-control" type="text" name="message" v-model="message" v-on:keyup.enter="sendMessage" placeholder="Enter a message" autocomplete="off">
               <span class="chat-send-button" v-on:click="sendMessage"><i class="fa fa-angle-right" aria-hidden="true"></i></span>

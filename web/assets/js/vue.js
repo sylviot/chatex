@@ -34,15 +34,15 @@
       ws: null,
       connected: false,
       members: [],
-      messages: [],
+      messages: []
     },
     methods: {
       addMessage: function(username, date, content) {
-        message = {type: 'message', username: username, date: date, content: content};
+        let message = {type: 'message', username: username, date: date, content: content};
         this.messages.push(message);
       },
       addMessageMember: function(username, content, icon) {
-        messageMember = {type: 'member', icon: icon, username: username, content: content};
+        let messageMember = {type: 'member', icon: icon, username: username, content: content};
         this.messages.push(messageMember);
       },
       updateMembers: function(members) {
@@ -128,6 +128,18 @@
     'Sylviot',
     'Lucas Ramos',
     'Mateus Ramos',
-    'Sylviot',
+    'Sylviot'
   ];
+
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
+
 }());

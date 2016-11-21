@@ -12,3 +12,9 @@ body {
   @include prefixer(text-rendering, optimizeLegibility, webkit moz spec);
   @include prefixer(font-smoothing, antialiased, webkit moz spec);
 }
+
+ul {
+  margin: 0;
+
+  list-style: none;
+}
