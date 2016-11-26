@@ -1,0 +1,31 @@
+.title {
+  margin: 0;
+
+  font-family: $font;
+  font-size: 26px;
+  font-weight: 300;
+
+  &.white {
+    color: $white;
+  }
+
+  &.center {
+    text-align: center;
+  }
+}
+
+.height-full {
+  height: 100%;
+}
+
+.divider-right {
+  border-right: 1px solid $white;
+
+  &.green {
+    border-right-color: tint($main-color, 10%);
+  }
+
+  &.gray {
+    border-right-color: $border-color;
+  }
+}

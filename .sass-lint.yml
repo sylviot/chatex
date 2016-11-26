@@ -1,0 +1,460 @@
+#########################
+## Sample Sass Lint File
+#########################
+# Linter Options
+options:
+  # Don't merge default rules
+  merge-default-rules: false
+  # Set the formatter to 'html'
+  formatter: html
+  # Output file instead of logging results
+  output-file: 'web/linters/sass-lint.html'
+  # Raise an error if more than 50 warnings are generated
+  max-warnings: 50
+# File Options
+files:
+  include: 'web/assets/sass/**/*.s+(a|c)ss'
+  ignore:
+    - 'sass/vendor/**/*.*'
+# Rule Configuration
+rules:
+  # Don't use quotes on attribute value (eg: span[lang=pt])
+  attribute-quotes:
+    - 2 # Error
+    -
+      include: false
+  # Force maximum BEM depth
+  bem-depth:
+    - 2
+    -
+      max-depth: 2
+  # Force border: none
+  border-zero:
+    - 2
+    -
+      convention: 'none'
+  # Force braces style (same as standardJS)
+  brace-style:
+    - 2
+    -
+      style: '1tbs'
+      allow-single-line: false
+  # Force class names convention
+  class-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedbem
+      convention-explanation: 'Class must contain only lowercase letters, underscores and hyphens'
+  # Force no underscores neither file extension on imports
+  clean-import-paths:
+    - 2
+    -
+      leading-underscore: false
+      filename-extension: false
+  # Force no parenthesis if no args
+  empty-args:
+    - 2
+    -
+      include: false
+  # Force empty line between non-comment declaration
+  empty-line-between-blocks:
+    - 2
+    -
+      include: true
+      allow-single-line-rulesets: false
+  # Force extend before declarations
+  extends-before-declarations: 2
+  # Force extend before mixins
+  extends-before-mixins: 2
+  # Force file end with newline
+  final-newline:
+    - 2
+    -
+      include: true
+  # Don't force attribute nesting
+  force-attribute-nesting: 0 # Disabled
+  # Force element nesting (eg: NO div span {})
+  force-element-nesting: 2
+  # Force pseudo-element nesting (eg: NO div:hover {})
+  force-pseudo-nesting: 2
+  # Force functions name convention
+  function-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+      convention-explanation: 'Functions must contain only lowercase letters and hyphens'
+  # Force long hexadecimal values (eg: NO #111)
+  hex-length:
+    - 2
+    -
+      style: long
+  # Force hexadecimal values to uppercase
+  hex-notation: 0
+#    - 2
+#    -
+#      style: uppercase
+  # Force identifier name format
+  id-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: camelcase
+      convention-explanation: 'IDs must be in camelCase'
+  # Force indentation to 2 spaces
+  indentation:
+    - 2
+    -
+      size: 2
+  # Force leading zero
+  leading-zero:
+    - 2
+    -
+      include: true
+  # Force mixins name convention
+  mixin-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+      convention-explanation: 'Mixins must contain only lowercase letters and hyphens'
+  # Force include mixin before declarations
+  mixins-before-declarations: 0
+  # Force nesting depth
+  nesting-depth:
+    - 2
+    -
+      max-depth: 3
+  # Disallow no attribute selectors
+  no-attribute-selectors: 2
+  # Disallow color keywords (eg: red, blue, etc…)
+  no-color-keywords: 2
+  # Disallow color literals (eg: no rgb, rgba, hsl, hsla — MUST use variables)
+  no-color-literals:
+    - 2
+    -
+      allow-map-identifiers: true
+      allow-rgba: false
+      allow-variable-identifiers: true
+  # Disallow combinators (eg: > ~ + [ESPACE])
+  no-combinators: 0
+  # Don't disable CSS comments
+  no-css-comments: 0
+  # Disallow debug
+  no-debug: 1 # Warning
+  # Disallow properties
+  no-disallowed-properties:
+    - 2
+    -
+      properties: []
+  # Disallow duplicates properties
+  no-duplicate-properties:
+    - 2
+    -
+      exclude: []
+  # Disallow empty ruleset
+  no-empty-rulesets: 2
+  # Allow extends
+  no-extends: 0
+  # Allow IDs
+  no-ids: 0
+  # Allow !important
+  no-important: 0
+  # Disallow invalid hex
+  no-invalid-hex: 2
+  # Disallow mergeable and duplicates
+  no-mergeable-selectors:
+    - 2
+    -
+      whitelist: []
+  # Disallow mispelled properties
+  no-misspelled-properties:
+    - 2
+    -
+      extra-properties: []
+  # Allow element with attribute but not with class nor id
+  no-qualifying-elements:
+    - 2
+    -
+      allow-element-with-attribute: true
+      allow-element-with-class: false
+      allow-element-with-id: false
+  # No trailing whitespaces
+  no-trailing-whitespace: 2
+  # No trailing zero
+  no-trailing-zero: 2
+  # Disallow transition to target all
+  no-transition-all: 2
+  # Allow universal selector
+  no-universal-selectors: 0
+  # Disallow protocols and domains for url
+  no-url-protocols: 2
+  # Disallow vendor prefixes
+  no-vendor-prefixes:
+    - 2
+    -
+      additional-identifiers: []
+      excluded-identifiers: []
+      ignore-non-standard: false
+  # Disallow warn
+  no-warn: 2
+  # Force one declaration per line
+  one-declaration-per-line: 2
+  # Allow anything else than placeholder in extend
+  placeholder-in-extend: 0
+  # Force placeholder name convention
+  placeholder-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+      convention-explanation: 'Placeholders must contain only lowercase letters and hyphens'
+  # Do not force property sort order
+  property-sort-order:
+    - 2
+    -
+      # Twitter RECESS - Property order
+      # https://github.com/twitter/recess
+      order:
+        - 'position'
+        - 'top'
+        - 'right'
+        - 'bottom'
+        - 'left'
+        - 'z-index'
+        - 'display'
+        - 'align-content'
+        - 'align-items'
+        - 'align-self'
+        - 'flex'
+        - 'flex-basis'
+        - 'flex-direction'
+        - 'flex-flow'
+        - 'flex-grow'
+        - 'flex-shrink'
+        - 'flex-wrap'
+        - 'justify-content'
+        - 'order'
+        - 'float'
+        - 'width'
+        - 'height'
+        - 'max-width'
+        - 'max-height'
+        - 'min-width'
+        - 'min-height'
+        - 'padding'
+        - 'padding-top'
+        - 'padding-right'
+        - 'padding-bottom'
+        - 'padding-left'
+        - 'margin'
+        - 'margin-top'
+        - 'margin-right'
+        - 'margin-bottom'
+        - 'margin-left'
+        - 'margin-collapse'
+        - 'margin-top-collapse'
+        - 'margin-right-collapse'
+        - 'margin-bottom-collapse'
+        - 'margin-left-collapse'
+        - 'overflow'
+        - 'overflow-x'
+        - 'overflow-y'
+        - 'clip'
+        - 'clear'
+        - 'font'
+        - 'font-family'
+        - 'font-size'
+        - 'font-smoothing'
+        - 'osx-font-smoothing'
+        - 'font-style'
+        - 'font-weight'
+        - 'hyphens'
+        - 'src'
+        - 'line-height'
+        - 'letter-spacing'
+        - 'word-spacing'
+        - 'color'
+        - 'text-align'
+        - 'text-decoration'
+        - 'text-indent'
+        - 'text-overflow'
+        - 'text-rendering'
+        - 'text-size-adjust'
+        - 'text-shadow'
+        - 'text-transform'
+        - 'word-break'
+        - 'word-wrap'
+        - 'white-space'
+        - 'vertical-align'
+        - 'list-style'
+        - 'list-style-type'
+        - 'list-style-position'
+        - 'list-style-image'
+        - 'pointer-events'
+        - 'cursor'
+        - 'background'
+        - 'background-attachment'
+        - 'background-color'
+        - 'background-image'
+        - 'background-position'
+        - 'background-repeat'
+        - 'background-size'
+        - 'border'
+        - 'border-collapse'
+        - 'border-top'
+        - 'border-right'
+        - 'border-bottom'
+        - 'border-left'
+        - 'border-color'
+        - 'border-image'
+        - 'border-top-color'
+        - 'border-right-color'
+        - 'border-bottom-color'
+        - 'border-left-color'
+        - 'border-spacing'
+        - 'border-style'
+        - 'border-top-style'
+        - 'border-right-style'
+        - 'border-bottom-style'
+        - 'border-left-style'
+        - 'border-width'
+        - 'border-top-width'
+        - 'border-right-width'
+        - 'border-bottom-width'
+        - 'border-left-width'
+        - 'border-radius'
+        - 'border-top-right-radius'
+        - 'border-bottom-right-radius'
+        - 'border-bottom-left-radius'
+        - 'border-top-left-radius'
+        - 'border-radius-topright'
+        - 'border-radius-bottomright'
+        - 'border-radius-bottomleft'
+        - 'border-radius-topleft'
+        - 'content'
+        - 'quotes'
+        - 'outline'
+        - 'outline-color'
+        - 'outline-offset'
+        - 'outline-style'
+        - 'outline-width'
+        - 'opacity'
+        - 'filter'
+        - 'visibility'
+        - 'size'
+        - 'zoom'
+        - 'transform'
+        - 'box-align'
+        - 'box-flex'
+        - 'box-orient'
+        - 'box-pack'
+        - 'box-shadow'
+        - 'box-sizing'
+        - 'table-layout'
+        - 'animation'
+        - 'animation-delay'
+        - 'animation-duration'
+        - 'animation-iteration-count'
+        - 'animation-name'
+        - 'animation-play-state'
+        - 'animation-timing-function'
+        - 'animation-fill-mode'
+        - 'transition'
+        - 'transition-delay'
+        - 'transition-duration'
+        - 'transition-property'
+        - 'transition-timing-function'
+        - 'background-clip'
+        - 'backface-visibility'
+        - 'resize'
+        - 'appearance'
+        - 'user-select'
+        - 'interpolation-mode'
+        - 'direction'
+        - 'marks'
+        - 'page'
+        - 'set-link-source'
+        - 'unicode-bidi'
+        - 'speak'
+  # Only allow some units
+  property-units:
+    - 2
+    -
+      global: ['em', 'rem', '%', 'px', ]
+  # Force correct syntax for pseudo-elements and pseudo-classes (eg: ::before and :hover)
+  pseudo-element: 2
+  # Force single quotes
+  quotes:
+    - 2
+    -
+      style: single
+  # Do not force shorthand values
+  shorthand-values: 0
+  # Force single line per selector
+  single-line-per-selector: 2
+  # Disallow space after bang
+  space-after-bang:
+    - 2
+    -
+      include: false
+  # Force space after colon
+  space-after-colon:
+    - 2
+    -
+      include: true
+  # Force space after comma
+  space-after-comma:
+    - 2
+    -
+      include: true
+  # Force space around operator
+  space-around-operator:
+    - 2
+    -
+      include: true
+  # Force space before bang
+  space-before-bang:
+    - 2
+    -
+      include: true
+  # Force space before brace
+  space-before-brace:
+    - 2
+    -
+      include: true
+  # Disallow space before colon
+  space-before-colon:
+    - 2
+    -
+      include: false
+  # Disallow space between parenthesis
+  space-between-parens:
+    - 2
+    -
+      include: false
+  # Force trailing semicolon
+  trailing-semicolon:
+    - 2
+    -
+      include: true
+  # Force quotes for url
+  url-quotes: 2
+  # Force properties to use variables
+  variable-for-property:
+    - 2
+    -
+      properties: [] # TODO
+  # Force variables name convention
+  variable-name-format:
+    - 2
+    -
+      allow-leading-underscore: false
+      convention: hyphenatedlowercase
+      convention-explanation: 'Variables must contain only lowercase letters and hyphens'
+  # Force no unit if value 0
+  zero-unit:
+    - 2
+    -
+      include: false
