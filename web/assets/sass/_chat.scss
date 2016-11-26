@@ -27,7 +27,7 @@
 .chat-members-list {
   padding: 0 15px;
 
-  overflow: scroll;
+  overflow-y: scroll;
 
   li {
     padding: 15px 0;
@@ -74,7 +74,7 @@
 .chat-history {
   padding: 10px 0;
 
-  overflow: scroll;
+  overflow-y: scroll;
 
   @include display(flex);
   @include flex-wrap(wrap);
@@ -84,44 +84,98 @@
 .chat-history-item {
   position: relative;
 
-  width: 70%;
-  padding: 10px;
+  width: 100%;
 
   font-family: $font;
-
-  background-color: $chat-history-item-color;
-  border-radius: 5px;
 
   & + .chat-history-item {
     margin-top: 15px;
   }
 
-  &::before {
-    position: absolute;
-    bottom: 3px;
+  .chat-history-item-card {
+    position: relative;
 
-    content: '';
-  }
+    width: 70%;
+    padding: 10px;
 
-  &.left {
-    margin-right: auto;
-    margin-left: 15px;
+    background-color: $chat-history-item-color;
+    border-radius: 5px;
 
     &::before {
-      left: -10px;
+      position: absolute;
+      bottom: 3px;
 
-      @include triangle(25px, $chat-history-item-color, left);
+      content: '';
+    }
+
+    &.left {
+      margin-right: auto;
+      margin-left: 15px;
+
+      &::before {
+        left: -10px;
+
+        @include triangle(25px, $chat-history-item-color, left);
+      }
+    }
+
+    &.right {
+      margin-right: 15px;
+      margin-left: auto;
+
+      &::before {
+        right: -10px;
+
+        @include triangle(25px, $chat-history-item-color, right);
+      }
     }
   }
 
-  &.right {
-    margin-right: 15px;
-    margin-left: auto;
+  .chat-history-item-join,
+  .chat-history-item-leave {
+    position: relative;
+    z-index: 1;
+
+    font-family: $font;
+    text-align: center;
+
+    i {
+      display: inline-block;
+      margin-right: 10px;
+
+      font-size: 20px;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+
+      content: '';
+    }
 
     &::before {
-      right: -10px;
+      top: 50%;
+      right: 15px;
+      left: 10px;
+      z-index: -1;
 
-      @include triangle(25px, $chat-history-item-color, right);
+      height: 1px;
+
+      background-color: darken($chat-history-background, 20%);
+
+      transform: translateY(-50%);
+    }
+
+    &::after {
+      left: 50%;
+      z-index: -1;
+
+      width: 200px;
+      height: 100%;
+
+      background-color: $chat-history-background;
+
+      transform: translateX(-50%);
     }
   }
 }

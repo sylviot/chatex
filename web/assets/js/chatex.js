@@ -105,41 +105,4 @@
       }
     }
   });
-
-  chat.connected = true;
-  chat.members = [
-    'Lucas Ramos',
-    'Mateus Ramos',
-    'Sylviot',
-    'Lucas Ramos',
-    'Mateus Ramos',
-    'Sylviot',
-    'Lucas Ramos',
-    'Mateus Ramos',
-    'Sylviot',
-    'Lucas Ramos',
-    'Mateus Ramos',
-    'Sylviot',
-    'Lucas Ramos',
-    'Mateus Ramos',
-    'Sylviot',
-    'Lucas Ramos',
-    'Mateus Ramos',
-    'Sylviot',
-    'Lucas Ramos',
-    'Mateus Ramos',
-    'Sylviot'
-  ];
-
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-  chat.addMessage('Lucas Ramos', '21/11/2016', 'Olá');
-
 }());
