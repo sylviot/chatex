@@ -1,0 +1,243 @@
+.chat-container {
+  width: 800px;
+  @include calc(height, '100vh - 20px');
+  margin-top: 10px;
+
+  background-color: $white;
+
+  box-shadow: 0 0 15px 1px $light-gray;
+}
+
+.chat-header {
+  height: 60px;
+
+  background-color: $main-color;
+
+  h2 {
+    height: 100%;
+
+    line-height: 60px;
+  }
+}
+
+.chat-content-height {
+  @include calc(height, '100vh - 80px');
+}
+
+.chat-members-list {
+  padding: 0 15px;
+
+  overflow-y: scroll;
+
+  li {
+    padding: 15px 0;
+
+    font-family: $font;
+    font-size: 18px;
+    font-weight: 300;
+
+    @include display(flex);
+    @include align-items(center);
+
+    & + li {
+      border-top: 1px solid $border-color;
+    }
+
+    i {
+      color: $main-color;
+    }
+  }
+}
+
+.user-identify {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+
+  font-weight: 400;
+  line-height: 50px;
+  text-align: center;
+
+  background-color: $border-color;
+  border-radius: 50%;
+}
+
+.chat-messages {
+  position: relative;
+}
+
+.chat-history-wrapper {
+  background-color: $chat-history-background;
+}
+
+.chat-history {
+  padding: 10px 0;
+
+  overflow-y: scroll;
+
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include calc(height, '100vh - 150px');
+}
+
+.chat-history-item {
+  position: relative;
+
+  width: 100%;
+
+  font-family: $font;
+
+  & + .chat-history-item {
+    margin-top: 15px;
+  }
+
+  .chat-history-item-card {
+    position: relative;
+
+    width: 70%;
+    padding: 10px;
+
+    background-color: $chat-history-item-color;
+    border-radius: 5px;
+
+    &::before {
+      position: absolute;
+      bottom: 3px;
+
+      content: '';
+    }
+
+    &.left {
+      margin-right: auto;
+      margin-left: 15px;
+
+      &::before {
+        left: -10px;
+
+        @include triangle(25px, $chat-history-item-color, left);
+      }
+    }
+
+    &.right {
+      margin-right: 15px;
+      margin-left: auto;
+
+      &::before {
+        right: -10px;
+
+        @include triangle(25px, $chat-history-item-color, right);
+      }
+    }
+  }
+
+  .chat-history-item-join,
+  .chat-history-item-leave {
+    position: relative;
+    z-index: 1;
+
+    font-family: $font;
+    text-align: center;
+
+    i {
+      display: inline-block;
+      margin-right: 10px;
+
+      font-size: 20px;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+
+      content: '';
+    }
+
+    &::before {
+      top: 50%;
+      right: 15px;
+      left: 10px;
+      z-index: -1;
+
+      height: 1px;
+
+      background-color: darken($chat-history-background, 20%);
+
+      transform: translateY(-50%);
+    }
+
+    &::after {
+      left: 50%;
+      z-index: -1;
+
+      width: 200px;
+      height: 100%;
+
+      background-color: $chat-history-background;
+
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.chat-history-message-header {
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(space-between);
+}
+
+.chat-history-message-name {
+  strong {
+    font-weight: 400;
+  }
+}
+
+.chat-history-message-date,
+.chat-history-message-content {
+  font-weight: 300;
+}
+
+.chat-history-message-content {
+  color: $text-color;
+}
+
+.chat-history-message-date {
+  font-size: 12px;
+}
+
+.chat-textbox {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 70px;
+
+  @include display(flex);
+  @include align-items(center);
+
+  input {
+    height: 40px;
+  }
+}
+
+.chat-send-button {
+  height: 40px;
+  margin-left: 10px;
+
+  font-size: 20px;
+  line-height: 40px;
+  color: $white;
+  text-align: center;
+
+  background-color: $main-color;
+  border-radius: 50%;
+
+  @include flex(0 0 40px);
+  @include align-items(center);
+
+  i {
+    position: relative;
+    left: 1px;
+  }
+}

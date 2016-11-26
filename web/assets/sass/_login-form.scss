@@ -1,0 +1,65 @@
+.login-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 280px;
+  padding: 20px 10px;
+
+  background-color: $white;
+  border-radius: 5px;
+
+  transform: translate(-50%, -50%);
+
+  box-shadow: 0 0 6px 1px $light-gray;
+  box-sizing: content-box;
+
+}
+
+.login-inputs {
+  margin-top: 10px;
+
+  input {
+    height: 40px;
+
+    font-family: $font;
+    font-size: 18px;
+    font-weight: 300;
+
+    background-color: $light-gray;
+
+    &:focus {
+      border-color: $light-gray;
+
+      box-shadow: none;
+    }
+
+    @include placeholder {
+      color: $placeholders-color;
+    }
+  }
+}
+
+.btn-login {
+  display: block;
+  width: 100%;
+  padding: 10px;
+
+  font-family: $font;
+  font-weight: 300;
+  color: $white;
+  text-transform: uppercase;
+
+  background-color: $main-color;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    color: $white;
+
+    background-color: tint($main-color, 10%);
+
+    outline: none !important;
+  }
+}
