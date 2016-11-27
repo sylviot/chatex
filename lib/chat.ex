@@ -1,5 +1,5 @@
 defmodule Chat.Page do
-	@path "web"
+	@pathbase "web"
 
 	def init(_, request, []) do
 		{:ok, request, nil}
@@ -8,10 +8,19 @@ defmodule Chat.Page do
 	def handle(request, state) do
 		{path, _request} = :cowboy_req.path(request)
 
-		{:ok, content} = File.read(@path <> path)
-		{:ok, request} = :cowboy_req.reply(200, [{"Content-Type", "text/html"}], content, request)
+		{:ok, content} = File.read(@pathbase <> path)
+		{:ok, request} = :cowboy_req.reply(200, [{"Content-Type", mime_type(path)}], content, request)
 
 		{:ok, request, state}
+	end
+
+	defp mime_type(filename) do
+		case Path.extname(filename) do
+			".html" -> "text/html"
+			".js" -> "application/javascript"
+			".css" -> "text/css"
+			_ -> "text/plain"
+		end
 	end
 
 	def terminate(_reason, _request, _state) do
@@ -29,7 +38,7 @@ defmodule Chat do
 		:cowboy.start_http(
 			:my_http_listener, 
 			100, 
-			[{:port, port}], 
+			[{:port, port()}], 
 			[{:env, [{:dispatch, args}]}]
 		)
 
@@ -42,9 +51,9 @@ defmodule Chat do
 
 
 	defp port do
-		case System.get_env("PORT") do
-			port_number when port_number -> String.to_integer(port_number)
-			_ -> 4000
+		case System.argv do
+			[] -> 4000
+			argv -> argv |> List.first |> String.to_integer
 		end	
 	end
 

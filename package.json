@@ -1,25 +1,11 @@
 {
   "name": "chatex",
   "version": "1.0.0",
-  "description": "**TODO: Add description**",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "description": "A simple chat using WebSocket",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "node_modules/.bin/gulp --production"
   },
-  "author": "",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LucasBRamos/chatex.git"
-  },
-  "bugs": {
-    "url": "https://github.com/LucasBRamos/chatex/issues"
-  },
-  "homepage": "https://github.com/LucasBRamos/chatex#readme",
-  "devDependencies": {
+  "dependencies": {
     "bootstrap": "^3.3.7",
     "bourbon": "^4.2.7",
     "breakpoint-sass": "^2.7.0",
