@@ -31,6 +31,7 @@ end
 
 defmodule Chat do
 	@behaviour :application
+  @port_default 4000
 
 	def start(_type, _args) do
 		args = :cowboy_router.compile(dispatch)
@@ -51,10 +52,12 @@ defmodule Chat do
 
 
 	defp port do
-		case System.argv do
-			[] -> 4000
-			argv -> argv |> List.first |> String.to_integer
-		end	
+    port_number = System.argv ++ [""] |> List.first
+
+    cond do
+      String.match?(port_number, ~r/^[0-9]+$/) ->  String.to_integer(port_number)
+      true -> @port_default
+    end
 	end
 
 	defp dispatch do
