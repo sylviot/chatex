@@ -14,12 +14,15 @@ A simple chat using WebSocket - [Live demo](http://chatex-live.herokuapp.com/ind
 * [JSON](https://github.com/cblage/elixir-json)
 
 #### Frontend
-* [SemanticUI](https://github.com/Semantic-Org/Semantic-UI)
+* [Bootstrap](https://github.com/twbs/bootstrap)
 * [VueJS](https://github.com/vuejs/vuejs.org)
 
 ## How use
 
 Download dependences
+```nodejs
+npm install
+```
 ```elixir
 mix deps.get
 ```
