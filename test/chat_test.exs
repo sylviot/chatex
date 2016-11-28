@@ -10,10 +10,22 @@ defmodule Chat.Test do
   test "join on server" do
     assert {:ok, rooms} = :gen_server.call(:chat_server, {:join, @room_name, @user_name})
 
+    assert List.keymember?(rooms, @room_name, 0)
+
+    :gen_server.call(:chat_server, {:leave, @room_name, @user_name})
+  end
+
+  test "online on server" do
+    :gen_server.call(:chat_server, {:join, @room_name, @user_name})
+
+    assert {:ok, rooms} = :gen_server.call(:chat_server, {:online, @room_name})
+
     {room_name, users} = List.keyfind(rooms, @room_name, 0)
     users = HashSet.to_list(users) |> Enum.map( fn {pid, name} -> name end)
     
-    assert room_name == @room_name
-    assert users == [@user_name]
+    assert @room_name == room_name
+    assert [@user_name] == users
+    
+    :gen_server.call(:chat_server, {:leave, @room_name, @user_name})
   end
 end

@@ -19,7 +19,7 @@ defmodule Chat.Server do
 	end
 
   def handle_call({:online, room_name}, {_form, _reference}, rooms) do
-    {room, users} = List.keyfind(rooms, room_name, 0)
+    {room, users} = List.keyfind(rooms, room_name, 0, {room_name, HashSet.new})
 
     users_online = HashSet.to_list(users)
                     |> Enum.map( fn ({pid, username}) -> username end)
@@ -28,7 +28,7 @@ defmodule Chat.Server do
       send pid, {:broadcast, [action: "online", content: users_online]}
     end)
 
-    {:reply, :ok, rooms}
+    {:reply, {:ok, rooms}, rooms}
   end
 
 	def handle_call({:talk, room_name, data}, {_from, _reference}, rooms) do
