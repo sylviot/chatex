@@ -15,7 +15,7 @@ defmodule Chat.Server do
 		room = HashSet.put(room, {_from, username})
 		rooms = List.keystore(rooms, room_name, 0, {room_name, room})
 
-		{:reply, :ok, rooms}
+		{:reply, {:ok, rooms}, rooms}
 	end
 
   def handle_call({:online, room_name}, {_form, _reference}, rooms) do
