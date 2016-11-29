@@ -32,4 +32,13 @@ defmodule Chat.Test do
     
     :gen_server.call(:chat_server, {:leave, @room_name, @user_name})
   end
+
+  test "talk on server" do
+    :gen_server.call(:chat_server, {:join, @room_name, @user_name})
+
+    assert :ok == :gen_server.call(:chat_server, {:talk, @room_name, ["data"]})
+    assert_receive {:broadcast, ["data"]}
+
+    :gen_server.call(:chat_server, {:leave, @room_name, @user_name})
+  end
 end
