@@ -7,12 +7,16 @@ defmodule Chat.Test do
   @room_name "geral"
   @user_name "username"
   
-  test "join on server" do
+  test "join/leave on server" do
     assert {:ok, rooms} = :gen_server.call(:chat_server, {:join, @room_name, @user_name})
 
     assert List.keymember?(rooms, @room_name, 0)
 
-    :gen_server.call(:chat_server, {:leave, @room_name, @user_name})
+    assert {:ok, rooms} = :gen_server.call(:chat_server, {:leave, @room_name, @user_name})
+
+    {room_name, users} = List.keyfind(rooms, @room_name, 0)
+
+    assert Enum.empty?(users)
   end
 
   test "online on server" do

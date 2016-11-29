@@ -47,6 +47,6 @@ defmodule Chat.Server do
     users = HashSet.delete(users, {_from, username})
     rooms = List.keystore(rooms, room_name, 0, {room, users})
 
-    {:reply, :ok, rooms}
+    {:reply, {:ok, rooms}, rooms}
 	end
 end
