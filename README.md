@@ -17,6 +17,9 @@ A simple chat using WebSocket - [Live demo](http://chatex-live.herokuapp.com/ind
 * [Bootstrap](https://github.com/twbs/bootstrap)
 * [VueJS](https://github.com/vuejs/vuejs.org)
 
+#### Test
+* [hackney](https://github.com/benoitc/hackney)
+
 ## How use
 
 Download dependences

@@ -34,7 +34,8 @@ defmodule Chat.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0.0"},
-      {:json, "~> 1.0.0"}
+      {:json,   "~> 1.0.0"},
+      {:hackney,"~> 1.6.0"},
     ]
   end
 end

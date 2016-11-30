@@ -41,4 +41,10 @@ defmodule Chat.Test do
 
     :gen_server.call(:chat_server, {:leave, @room_name, @user_name})
   end
+
+  test "teste teste" do
+    :hackney.start()
+
+    assert {:ok, status, headers, client} = :hackney.get("http://127.0.0.1:4000/index.html")
+  end
 end
